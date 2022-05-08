@@ -73,7 +73,7 @@ export default {
                     this.totalPage = Math.ceil(response.headers['x-total-count'] / this.limit)
                     this.posts = response.data;
                     this.isPostLoading = false;
-                }, 3000);
+                }, 2000);
             } catch (error) {
                 alert('error')
             } finally {
