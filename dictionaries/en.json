@@ -1,4 +1,20 @@
 {
   "home": "Home",
-  "about": "About"
+  "about": "About",
+  "main_title": "The blog",
+  "latest_articles": "Latest articles",
+  "show_more": "Show more",
+  "all_tags": "All",
+  "auth": {
+    "login": "Log in",
+    "login_title": "Log in",
+    "sign_up_title": "Sign Up",
+    "enter_details": "Enter your login details",
+    "email": "Email",
+    "username": "Username",
+    "password": "Password",
+    "does_not_have_account": "Don't have an account?",
+    "sign_up": "Sign Up",
+    "already_have_account": "Already have an account?"
+  }
 }

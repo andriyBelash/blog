@@ -1,4 +1,20 @@
 {
   "home": "Головна",
-  "about": "Про нас"
+  "about": "Про нас",
+  "main_title": "Блог",
+  "latest_articles": "Останні статті",
+  "show_more": "Переглянути більше",
+  "all_tags": "Всі",
+  "auth": {
+    "login": "Увійти",
+    "login_title": "Вхід",
+    "sign_up_title": "Реєстрація",
+    "enter_details": "Введіть дані для входу",
+    "email": "Email",
+    "username": "Імʼя",
+    "password": "Пароль",
+    "does_not_have_account": "Не має облікового запису?",
+    "sign_up": "Зареєструватися",
+    "already_have_account": "У вас вже є обліковий запис?"
+  }
 }
