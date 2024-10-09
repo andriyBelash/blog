@@ -13,4 +13,4 @@ const ThemeSwitcher: React.FC<{ toggleThemeHandler: () => void, isDarkTheme: boo
   )
 }
 
-export default ThemeSwitcher
+export default React.memo(ThemeSwitcher) // Memoize the ThemeSwitcher

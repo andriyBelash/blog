@@ -20,7 +20,7 @@ export default async function LocaleLayout({
   const dict = await getDictionary(lang)
   return (
     <div id="root">
-      <Header/>
+      <Header locale={lang} />
       <main>
         {children}
       </main>

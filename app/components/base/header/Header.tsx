@@ -1,13 +1,15 @@
 'use client'
-import { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import ThemeContext from "@/context/theme"
+import LocaleSwitcher from "./LocaleSwitcher"
 import dynamic from 'next/dynamic'
 import Image from "next/image"
+import type { Locale } from "@/lib/internationalization/i18n"
 
 // Динамічний імпорт ThemeSwitcher з відключеним SSR
 const ThemeSwitcher = dynamic(() => import('./ThemeSwitcher'), { ssr: false })
 
-const Header = () => {
+const Header: React.FC<{ locale: Locale }> = ({ locale }) => {
   const { isDarkTheme, toggleThemeHandler } = useContext(ThemeContext);
   const [logoSrc, setLogoSrc] = useState("/logo/light-mode-logo.svg");
   const [isMounted, setIsMounted] = useState(false);
@@ -27,14 +29,13 @@ const Header = () => {
           height={36}
           className="cursor-pointer"
         />
-        <div>
-          {isMounted && (
-            <ThemeSwitcher toggleThemeHandler={toggleThemeHandler} isDarkTheme={isDarkTheme} />
-          )}
+        <div className="flex items-center gap-[12px]">
+          <LocaleSwitcher locale={locale} />
+          {isMounted ? <ThemeSwitcher toggleThemeHandler={toggleThemeHandler} isDarkTheme={isDarkTheme} /> : <div className="thumb-wrapper"></div> }
         </div>
       </div>
     </div>
   )
 }
 
-export default Header
+export default React.memo(Header) // Memoize the Header
