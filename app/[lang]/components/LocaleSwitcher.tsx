@@ -11,7 +11,7 @@ const LocaleSwitcher = ({ locale }: { locale: string }) => {
 
   const generateLink = (lang: string): string => {
     const path = pathname.split('/').filter((_, i) => i > 1).join('/')
-    return `/${lang}/${path}`
+    return lang === 'uk' ? `/${path}` : `/${lang}/${path}`
   }
 
   return (

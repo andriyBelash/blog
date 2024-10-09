@@ -3,6 +3,7 @@ import { defaultLocale, isValidLocale, Locale } from '@/lib/i18n'
 import Header from './components/Header'
 import { ThemeProvider } from '../components/ThemeProvider'
 import { getDictionary } from './dictionaries'
+import { CookiesProvider } from 'next-client-cookies/server';
 
 export async function generateStaticParams() {
   return [{ lang: defaultLocale }, { lang: 'en' }]
@@ -18,9 +19,11 @@ export default async function LocaleLayout({
   const locale = isValidLocale(lang) ? lang : defaultLocale
   const dict = await getDictionary(lang)
   return (
-    <ThemeProvider>
-      <Header locale={lang} auth_button_text={dict['auth']['login']}/>
-      {children}
-    </ThemeProvider>
+    <CookiesProvider>
+      <ThemeProvider>
+        <Header locale={lang} auth_button_text={dict['auth']['login']}/>
+        {children}
+      </ThemeProvider>
+    </CookiesProvider>
   )
 }

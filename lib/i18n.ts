@@ -8,5 +8,5 @@ export function isValidLocale(locale: string): locale is Locale {
 }
 
 export function localePath(path: string, lang: string): string {
-  return `/${lang}/${path}`
+  return lang === 'uk' ? `/${path}` : `/${lang}/${path}`
 }

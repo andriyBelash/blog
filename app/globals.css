@@ -23,6 +23,11 @@
 
 }
 
+button[disabled]{
+  opacity: .5;
+  pointer-events: none;
+}
+
 html{
   height: 90%;
 }
