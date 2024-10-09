@@ -1,5 +1,5 @@
 import 'server-only'
-import { Locale } from '@/lib/i18n'
+import { Locale } from '@/lib/internationalization/i18n'
 import { Dictionary } from '@/types/dictionary'
 
 const dictionaries: Record<Locale, () => Promise<Dictionary>> = {

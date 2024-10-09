@@ -1,0 +1,16 @@
+.thumb-wrapper{
+  display: flex;
+  background-color: var(--background);
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  border: 1px solid var(--text);
+  padding: 1px;
+}
+
+.thumb-wrapper.active{
+  background-color: var(--border);
+}
