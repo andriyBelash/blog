@@ -8,7 +8,7 @@
   --border: #E8E8EA;
   --text: #181A2A;
   --secondary-text: #97989F;
-  --blue: #4B6BFB;
+  --blue: #276ef6;
 }
 
 .dark-mode{
@@ -17,7 +17,7 @@
   --border: #242535;
   --text: #FFFFFF;
   --secondary-text: #97989F;
-  --blue: #4B6BFB;
+  --blue: #276ef6;
 }
 
 *{
@@ -54,6 +54,35 @@ body {
   margin: 0 auto;
   padding: 0 15px;
   width: 100%;
+}
+
+.primary-text{
+  color: var(--text);
+}
+
+.secondary-text{
+  color: var(--secondary-text);
+}
+
+.ellipsis{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  max-width: 150px;
+}
+
+.input{
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  width: 100%;
+  height: 48px;
+  background-color: var(--background);
+}
+
+.input::placeholder{
+  color: var(--secondary-text);
 }
 
 a {

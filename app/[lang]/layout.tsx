@@ -16,12 +16,11 @@ export default async function LocaleLayout({
   children: React.ReactNode
   params: { lang: Locale }
 }) {
-  const locale = isValidLocale(lang) ? lang : defaultLocale
   const dict = await getDictionary(lang)
   return (
     <div id="root">
-      <Header locale={lang} />
-      <main>
+      <Header locale={lang} login_text={dict['auth']['login']}/>
+      <main className="flex flex-col">
         {children}
       </main>
       <Footer/>

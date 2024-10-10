@@ -12,7 +12,7 @@ const LocaleSwitcher: React.FC<{ locale: Locale }> = ({ locale }) => {
 
   return (
     <Link href={generateSwitcherLink(locale, pathname)} className={`flex items-center justify-center cursor-pointer thumb-wrapper`}>
-      <span className='secondary-text'>
+      <span className='primary-text'>
         { locale === 'en' ? 'EN' : 'УКР' }
       </span>
     </Link>
