@@ -1,32 +1,36 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import Button from '../../ui/button/Button'
-import ClientLocaleLink from '../link/ClientLocaleLink'
+import { useUserStore } from '@/stores/user.store'
+import Link from 'next/link'
 
-const Account: React.FC<{ login_text: string }> = ({ login_text }) => {
+const Account = () => {
+  const store = useUserStore();
   return (
     <>
-      { false ? 
+      { useUserStore.getState().user ? 
       (<div className='flex items-center gap-[4px]'>
         <div className='h-[44px] w-[44px] border-2 rounded-md border-[var(--border)]'>
           <Image
-            src="/avatar.png"
             alt="Profile"
+            src={store.user?.avatar_url || "/avatar.png"}
             width={44}
             height={44}
+            quality={100}
+            objectFit='cover'
             className="rounded-md"
           />
         </div>
           <div className='flex flex-col justify-center'>
-            <span className='primary-text ellipsis'>Username</span>
-            <span className='secondary-text text-sm'>email</span>
+            <span className='primary-text ellipsis'>{useUserStore.getState().user?.username}</span>
+            <span className='secondary-text text-sm'>{useUserStore.getState().user?.email}</span>
           </div>
       </div>)
        : 
-       <ClientLocaleLink href="/auth/login">
-          <Button>{login_text}</Button>
-       </ClientLocaleLink>
+       <Link href="/auth/login">
+          <Button>Увійти</Button>
+       </Link>
       }
     </>
   )

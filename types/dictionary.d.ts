@@ -17,4 +17,17 @@ export interface Dictionary {
     sign_up_title: string,
     already_have_account: string
   }
+
+  validation: {
+    required: string,
+    invalid_email: string,
+    min_6: string
+    min_3: string
+  }
+
+  toast: {
+    success: string,
+    error: string,
+    invalid_credentials: string
+  }
 }

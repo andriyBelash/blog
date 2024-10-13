@@ -9,6 +9,7 @@
   --text: #181A2A;
   --secondary-text: #97989F;
   --blue: #276ef6;
+  --red: rgba(228, 29, 29, 1)
 }
 
 .dark-mode{
@@ -18,6 +19,7 @@
   --text: #FFFFFF;
   --secondary-text: #97989F;
   --blue: #276ef6;
+  --red: rgba(228, 29, 29, 1)
 }
 
 *{
@@ -83,6 +85,10 @@ body {
 
 .input::placeholder{
   color: var(--secondary-text);
+}
+
+.input.error{
+  border-color: var(--red);
 }
 
 a {

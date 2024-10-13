@@ -1,34 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getCookies } from 'next-client-cookies/server'
+import { cookies } from 'next/headers';
 
-const locales = ['uk', 'en']
-const defaultLocale = 'uk'
 
 export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname
-  if (
-    pathname.startsWith('/_next') ||
-    pathname.startsWith('/api') ||
-    pathname.includes('.') 
-  ) {
-    return NextResponse.next()
+  const cookieStore = cookies();
+  const access_token = cookieStore.get('access_token');
+
+  console.log(access_token, 'cookieStore asd')
+
+  if(access_token) {
+    request.headers.set('Authorization', `Bearer ${access_token.value}`)
   }
-
-  const pathnameHasLocale = locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  )
-
-  let response: NextResponse
-
-  if (!pathnameHasLocale) {
-    const newUrl = new URL(request.url)
-    newUrl.pathname = `/${defaultLocale}${pathname}`
-    response = NextResponse.rewrite(newUrl)
-  } else {
-    response = NextResponse.next()
-  }
-
-  return response
 }
 
 export const config = {

@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeContextProvider } from "@/context/theme";
+import { useUserStore } from '@/stores/user.store'
+
+import Header from "./components/base/header/Header";
+import Footer from "./components/base/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,15 +15,28 @@ export const metadata: Metadata = {
 };
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  try {
+    await useUserStore.getState().getUser()
+  } catch (e) {
+    console.log(e)
+  }
   return (
-    <html lang="en">
+    <html lang="uk">
       <ThemeContextProvider>
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <div id="root">
+            <Header />
+            <main className="flex flex-col">
+              {children}
+            </main>
+            <Footer/>
+          </div>
+        </body>
       </ThemeContextProvider>
     </html>
   );
