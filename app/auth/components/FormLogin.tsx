@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Button from '@/app/components/ui/button/Button'
-import type { LoginFormFields } from '@/types/auth'
+import type { LoginFormFields } from '@/src/types/auth'
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -9,8 +9,8 @@ import { Toaster, toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import * as yup from "yup";
 
-import AuthService from '@/services/auth/auth.service'
-import { useUserStore } from '@/stores/user.store'
+import AuthService from '@/src/services/auth/auth.service'
+import { useUserStore } from '@/src/stores/user.store'
 import Link from 'next/link'
 
 
@@ -32,7 +32,7 @@ const FormLogin = () => {
         useUserStore.getState().setUser(res.data.user)
         useUserStore.getState().setIsAuth(true)
       }
-      // router.replace('/')
+      router.replace('/')
     } catch (error) {
       const response = (error as any).response
       if (response && response.data) {

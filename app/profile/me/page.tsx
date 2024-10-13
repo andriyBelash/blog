@@ -1,9 +1,5 @@
-import { Locale } from "@/lib/internationalization/i18n";
+import { redirect } from "next/navigation"
 
-export default async function ProfileMePage({ params: { lang } }: { params: { lang: Locale } }) {
-  return (
-    <div>
-      <h1>Profile Me Page</h1>
-    </div>
-  )
+export default function Page() {
+  return redirect("/profile/me/overview")
 }

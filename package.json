@@ -11,6 +11,8 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
     "@hookform/resolvers": "^3.9.0",
+    "@tanstack/react-query": "^5.59.13",
+    "@tanstack/react-query-devtools": "^5.59.13",
     "@types/cookie": "^0.6.0",
     "@types/js-cookie": "^3.0.6",
     "axios": "^1.7.7",

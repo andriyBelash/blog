@@ -1,4 +1,4 @@
-import { Tokens } from "@/types/enum";
+import { Tokens } from "@/src/types/enum";
 import Cookies from "js-cookie";
 
 export default class AuthTokenService {

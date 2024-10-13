@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeContextProvider } from "@/context/theme";
-import { useUserStore } from '@/stores/user.store'
+import { ThemeContextProvider } from "@/src/context/theme";
+import QueryProvider from "@/src/context/providers/QueryProvider";
 
 import Header from "./components/base/header/Header";
 import Footer from "./components/base/Footer";
@@ -20,23 +20,20 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  try {
-    await useUserStore.getState().getUser()
-  } catch (e) {
-    console.log(e)
-  }
   return (
     <html lang="uk">
       <ThemeContextProvider>
-        <body className={inter.className}>
-          <div id="root">
-            <Header />
-            <main className="flex flex-col">
-              {children}
-            </main>
-            <Footer/>
-          </div>
-        </body>
+          <body className={inter.className}>
+            <QueryProvider>
+              <div id="root">
+                <Header />
+                <main className="flex flex-col">
+                  {children}
+                </main>
+                <Footer/>
+              </div>
+            </QueryProvider>
+          </body>
       </ThemeContextProvider>
     </html>
   );

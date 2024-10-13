@@ -1,18 +1,28 @@
 'use client'
 import React, { useContext, useEffect, useState } from "react"
-import ThemeContext from "@/context/theme"
+import ThemeContext from "@/src/context/theme"
 import Account from "./Account"
 import dynamic from 'next/dynamic'
 import Image from "next/image"
 
+import { useUserStore } from "@/src/stores/user.store"
+import { useQuery } from '@tanstack/react-query'
+import Link from "next/link"
 
-// Динамічний імпорт ThemeSwitcher з відключеним SSR
+
 const ThemeSwitcher = dynamic(() => import('./ThemeSwitcher'), { ssr: false })
 
 const Header = () => {
   const { isDarkTheme, toggleThemeHandler } = useContext(ThemeContext);
-  const [logoSrc, setLogoSrc] = useState("/logo/light-mode-logo.svg");
-  const [isMounted, setIsMounted] = useState(false);
+  const [ logoSrc, setLogoSrc ] = useState("/logo/light-mode-logo.svg");
+  const [ isMounted, setIsMounted ] = useState(false);
+
+  const result = useQuery({
+    queryKey: ['user'],
+    queryFn: () => {
+      return useUserStore.getState().getUser()
+    }
+  })
 
   useEffect(() => {
     setIsMounted(true);
@@ -22,16 +32,24 @@ const Header = () => {
   return (
     <div className="h-[90px] secondary-background border-b border-[var(--border)]">
       <div className="h-full flex items-center wrapper w-full justify-between">
-        <Image
-          src={logoSrc}
-          alt="Next Blog Logo"
-          width={158}
-          height={36}
-          className="cursor-pointer"
-        />
+        <Link href="/">
+          <Image
+            src={logoSrc}
+            alt="Next Blog Logo"
+            width={158}
+            height={36}
+            className="cursor-pointer"
+          />
+        </Link>
         <div className="flex items-center gap-[12px]">
-          <Account />
-          {isMounted ? <ThemeSwitcher toggleThemeHandler={toggleThemeHandler} isDarkTheme={isDarkTheme} /> : <div className="thumb-wrapper"></div> }
+          {
+            isMounted && !result.isLoading && (
+              <>
+                <Account />
+                <ThemeSwitcher toggleThemeHandler={toggleThemeHandler} isDarkTheme={isDarkTheme} />
+              </>
+            )
+          }
         </div>
       </div>
     </div>

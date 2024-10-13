@@ -17,7 +17,7 @@
 
 .outline-type{
   background-color: transparent;
-  color: var(--blue);
+  color: var(--text);
   border: 1px solid var(--blue);
   border-radius: 8px;
   cursor: pointer;

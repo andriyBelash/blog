@@ -1,5 +1,5 @@
-import { axiosClassic } from '@/api/interceptors'
-import type { LoginFormFields, SignupFormFields, IAuthResponse, Tokens } from '@/types/auth';
+import { axiosClassic } from '@/src/api/interceptors'
+import type { LoginFormFields, SignupFormFields, IAuthResponse, Tokens } from '@/src/types/auth';
 import AuthTokenService from './auth-token.service';
 
 export default class AuthService {

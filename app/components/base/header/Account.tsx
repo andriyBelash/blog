@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Button from '../../ui/button/Button'
-import { useUserStore } from '@/stores/user.store'
+import { useUserStore } from '@/src/stores/user.store'
 import Link from 'next/link'
 
 const Account = () => {
@@ -10,7 +10,7 @@ const Account = () => {
   return (
     <>
       { useUserStore.getState().user ? 
-      (<div className='flex items-center gap-[4px]'>
+      (<Link href="/profile/me/overview" className='flex items-center gap-[8px]'>
         <div className='h-[44px] w-[44px] border-2 rounded-md border-[var(--border)]'>
           <Image
             alt="Profile"
@@ -20,13 +20,14 @@ const Account = () => {
             quality={100}
             objectFit='cover'
             className="rounded-md"
+            style={{ minHeight: '44px', minWidth: '44px' }}
           />
         </div>
-          <div className='flex flex-col justify-center'>
-            <span className='primary-text ellipsis'>{useUserStore.getState().user?.username}</span>
-            <span className='secondary-text text-sm'>{useUserStore.getState().user?.email}</span>
-          </div>
-      </div>)
+        <div className='flex flex-col justify-center'>
+          <span className='primary-text ellipsis'>{useUserStore.getState().user?.username}</span>
+          <span className='secondary-text text-sm'>{useUserStore.getState().user?.email}</span>
+        </div>
+      </Link>)
        : 
        <Link href="/auth/login">
           <Button>Увійти</Button>

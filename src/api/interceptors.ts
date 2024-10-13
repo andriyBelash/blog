@@ -1,6 +1,6 @@
 import axios, { type CreateAxiosDefaults } from "axios";
-import AuthTokenService from "@/services/auth/auth-token.service";
-import AuthService from "@/services/auth/auth.service";
+import AuthTokenService from "@/src/services/auth/auth-token.service";
+import AuthService from "@/src/services/auth/auth.service";
 
 const options: CreateAxiosDefaults = {
   baseURL: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api/web/',
@@ -33,7 +33,6 @@ axiosWithAuth.interceptors.response.use(
     ) {
       originalRequest._isRetry = true;
       try {
-        console.log('error if')
         await AuthService.refreshToken()
         return axiosWithAuth.request(originalRequest);
       } catch (error) {

@@ -1,5 +1,5 @@
-import { axiosWithAuth } from "@/api/interceptors";
-import { IUser } from "@/types/user";
+import { axiosWithAuth } from "@/src/api/interceptors";
+import { IUser } from "@/src/types/user";
 import AuthTokenService from "./auth/auth-token.service";
 
 export default class UserService {

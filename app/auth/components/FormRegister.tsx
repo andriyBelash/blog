@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Button from '@/app/components/ui/button/Button'
-import type { SignupFormFields } from '@/types/auth'
+import type { SignupFormFields } from '@/src/types/auth'
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';

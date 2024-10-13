@@ -91,6 +91,12 @@ body {
   border-color: var(--red);
 }
 
+.page{
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+}
+
 a {
   cursor: pointer;
 }
