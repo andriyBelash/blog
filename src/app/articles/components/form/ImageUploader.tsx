@@ -5,12 +5,17 @@ import useImageUpload from "@/src/hooks/useImageUploader";
 import Image from 'next/image';
 
 
-const ImageUploader = () => {
+interface Props {
+  setImage: (file: File) => void
+}
+
+const ImageUploader: React.FC<Props> = ({ setImage }) => {
 
   const [preview, setPreview] = useState<string | null>(null);
 
   const handleFileSelect = useCallback((file: File) => {
     setPreview(URL.createObjectURL(file));
+    setImage(file);
   }, [setPreview]);
 
   const imageUploader = useImageUpload({ onFileSelect: handleFileSelect });

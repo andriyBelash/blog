@@ -9,7 +9,12 @@ const ReactQuill = dynamic(() => import('react-quill'), {
   loading: () => <p>Завантаження ...</p>
 })
 
-const FormEditor: React.FC = () => {
+interface Props {
+  value: string,
+  onChange: (value: string) => void
+}
+
+const FormEditor: React.FC<Props> = ({ value, onChange }) => {
 
   const modules = {
     toolbar: {
@@ -52,10 +57,12 @@ const FormEditor: React.FC = () => {
         theme='snow'
         modules={modules}
         formats={formats}
+        value={value}
+        onChange={onChange}
         className="pb-[70px] h-[370px] bg-[var(--background)]"
       />
       <div className="mt-4 text-sm text-gray-600">
-        Кількість символів: {0}
+        Кількість символів: {value.length}
       </div>
     </div>
   )
