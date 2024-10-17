@@ -20,7 +20,7 @@ const Account = () => {
             quality={100}
             objectFit='cover'
             className="rounded-md"
-            style={{ minHeight: '44px', minWidth: '44px' }}
+            style={{ minHeight: '44px', minWidth: '44px', objectFit: 'cover' }}
           />
         </div>
         <div className='flex flex-col justify-center'>

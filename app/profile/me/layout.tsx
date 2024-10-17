@@ -1,4 +1,5 @@
 import LinkTabs from "@/app/components/ui/tabs/LinkTabs";
+import Transition from "@/app/components/ui/Transition";
 
 import { PROFILE_TABS } from "@/src/lib/constants";
 

@@ -5,13 +5,15 @@ import UserService from "@/src/services/user.service";
 type States = {
   user: IUser | null,
   isAuth: boolean,
-  globalLoader: boolean
+  globalLoader: boolean,
 }
 
 type Actions = {
   setUser: (user: IUser) => void
   setIsAuth: (isAuth: boolean) => void,
-  getUser: (withLoading?: boolean ) => Promise<IUser>
+  getUser: (withLoading?: boolean ) => Promise<IUser>,
+  updateUser: (fields: {username: string, email: string}) => Promise<IUser | undefined>,
+  updateLogo: (formData: FormData) => Promise<IUser | undefined>
 }
 
 export const useUserStore = create<States & Actions>((set) => ({
@@ -33,5 +35,25 @@ export const useUserStore = create<States & Actions>((set) => ({
     } finally {
       if (withLoading) set({ globalLoader: false });
     }
+  },
+
+  async updateUser(fields) {
+    try {
+      const res = await UserService.updateMe(fields)
+      if (res?.data) {
+        set({ user: res.data })
+      }
+      return res.data
+    } catch (error) {}
+  },
+
+  async updateLogo(formData) {
+    try {
+      const res = await UserService.updateLogo(formData)
+      if (res?.data) {
+        set({ user: res.data })
+      }
+      return res.data
+    } catch (error) {}
   }
 }))

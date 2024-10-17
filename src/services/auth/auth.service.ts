@@ -23,6 +23,7 @@ export default class AuthService {
   }
 
   public static async logout() {
+    console.log('LOG OUT')
     await axiosClassic.post('/auth/logout')
     AuthTokenService.removeFromStorage()
   }

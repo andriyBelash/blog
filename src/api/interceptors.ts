@@ -1,6 +1,7 @@
 import axios, { type CreateAxiosDefaults } from "axios";
 import AuthTokenService from "@/src/services/auth/auth-token.service";
 import AuthService from "@/src/services/auth/auth.service";
+import { redirect } from "next/navigation";
 
 const options: CreateAxiosDefaults = {
   baseURL: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api/web/',
@@ -27,7 +28,7 @@ axiosWithAuth.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
     if (
-      error.response?.status === 401 &&
+      error.response?.status === 401 && error.response?._data?.message === 'invalid_token' &&
       error.config &&
       !error.config._isRetry
     ) {
@@ -41,7 +42,6 @@ axiosWithAuth.interceptors.response.use(
         return Promise.reject(error);
       }
     } else {
-      AuthService.logout();
       return Promise.reject(error);
     }
   }

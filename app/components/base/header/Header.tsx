@@ -21,8 +21,10 @@ const Header = () => {
     queryKey: ['user'],
     queryFn: () => {
       return useUserStore.getState().getUser()
-    }
+    },
+    retry: false
   })
+  
 
   useEffect(() => {
     setIsMounted(true);

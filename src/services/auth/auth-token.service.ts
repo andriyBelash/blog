@@ -22,6 +22,5 @@ export default class AuthTokenService {
   }
   public static removeFromStorage(): void {
     Cookies.remove(Tokens.ACCESS);
-    Cookies.remove(Tokens.REFRESH);
   }
 }

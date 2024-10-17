@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeContextProvider } from "@/src/context/theme";
 import QueryProvider from "@/src/context/providers/QueryProvider";
+import Transition from "./components/ui/Transition";
 
 import Header from "./components/base/header/Header";
 import Footer from "./components/base/Footer";
@@ -28,7 +29,7 @@ export default async function RootLayout({
               <div id="root">
                 <Header />
                 <main className="flex flex-col">
-                  {children}
+                 {children}
                 </main>
                 <Footer/>
               </div>
