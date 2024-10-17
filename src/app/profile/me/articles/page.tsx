@@ -1,4 +1,4 @@
-import Button from "@/app/components/ui/button/Button";
+import Button from "@/src/app/components/ui/button/Button";
 import Link from "next/link";
 
 export default async function Page() {

@@ -1,4 +1,4 @@
-import SkeletonLoader from "@/app/components/ui/SkeletonLoader"
+import SkeletonLoader from "@/src/app/components/ui/SkeletonLoader"
 import InfoBlock from "./components/InfoBlock"
 
 export default async function Page() {

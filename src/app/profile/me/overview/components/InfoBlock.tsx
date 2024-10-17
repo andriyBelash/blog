@@ -4,10 +4,10 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import AuthService from '@/src/services/auth/auth.service'
 
-import SkeletonLoader from '@/app/components/ui/SkeletonLoader'
+import SkeletonLoader from '@/src/app/components/ui/SkeletonLoader'
 import Image from 'next/image'
 import Link from 'next/link'
-import Button from '@/app/components/ui/button/Button'
+import Button from '@/src/app/components/ui/button/Button'
 import { CiEdit } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
 
