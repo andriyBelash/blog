@@ -12,16 +12,6 @@
   --red: rgba(228, 29, 29, 1)
 }
 
-.dark-mode{
-  --background: #181A2A;
-  --secondary: #141624;
-  --border: #242535;
-  --text: #FFFFFF;
-  --secondary-text: #97989F;
-  --blue: #276ef6;
-  --red: rgba(228, 29, 29, 1)
-}
-
 *{
   margin: 0;
   padding: 0;
