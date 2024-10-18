@@ -1,4 +1,5 @@
 import { ArticleStatus } from "./enum";
+import { IUser } from "./user";
 
 export interface IArticle {
   id: number,
@@ -6,10 +7,12 @@ export interface IArticle {
   slug: string,
   content: string,
   status: ArticleStatus,
+  badge: string,
   logo: string | null,
   user_id: number,
   created_at: string,
   updated_at: string,
+  user: IUser
 }
 
 export interface IArticleForm {

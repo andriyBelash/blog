@@ -15,4 +15,8 @@ export default class UserService {
       headers: { 'Content-Type': 'multipart/form-data' }
     })
   }
+
+  public static async getArticles(params: Record<string, any>) {
+    return axiosWithAuth.get('/profile/articles', { params })
+  }
 }
