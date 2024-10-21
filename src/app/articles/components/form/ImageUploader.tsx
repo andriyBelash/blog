@@ -30,7 +30,7 @@ const ImageUploader: React.FC<Props> = ({ setImage }) => {
       <input id='article-file-upload' type="file" onChange={imageUploader.onChange} accept="image/*" className='hidden' />
       <label 
         htmlFor='article-file-upload'
-        className={`w-full flex items-center justify-center h-[300px] cursor-pointer ${ imageUploader.isDragging ? 'border-[var(--blue)]' : 'hover:border-[var(--blue)] border-[var(--border)]'} border rounded-md border-dashed `}
+        className={`bg-[var(--background)] w-full flex items-center justify-center h-[300px] cursor-pointer ${ imageUploader.isDragging ? 'border-[var(--blue)]' : 'hover:border-[var(--blue)] border-[var(--border)]'} border rounded-md border-dashed `}
       >
         {preview ? (
           <Image

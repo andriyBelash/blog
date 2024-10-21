@@ -1,0 +1,30 @@
+/* Loader.module.css */
+.spinner {
+  border: 2px solid var(--border);
+  border-color: var(--border)!important;
+  border-top: 2px solid;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.linearContainer {
+  overflow: hidden;
+  background-color: #f3f3f3;
+  width: 100%;
+}
+
+.linearBar {
+  width: 50%;
+  height: 100%;
+  animation: linearMove 1s infinite linear;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes linearMove {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}

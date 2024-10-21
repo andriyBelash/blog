@@ -22,7 +22,26 @@ const Article: React.FC<Props> = ({ article, my = false }) => {
           style={{ minHeight: '200px', objectFit: 'cover' }}
         />
       </div>
-      {article.badge && <div className='w-max text-[14px] text-[var(--blue)] py-2 px-4 rounded-md' style={{ backgroundColor: 'rgb(from var(--blue) R G B / .2 )'}}>{article.badge}</div>}
+      <div className='flex items-center justify-between gap-2'>
+        <Link href={`#`}>
+          <div className='flex items-center gap-2'>
+            <div className='w-[44px] h-[44px] rounded-full border-2 border-[var(--border)]'>
+              <Image
+                alt="Profile"
+                src={article.user?.avatar_url || "/avatar.png"}
+                width={44}
+                height={44}
+                quality={100}
+                style={{ minHeight: '44px', minWidth: '44px', objectFit: 'cover' }}
+                objectFit='cover'
+                className="rounded-full"
+              />
+            </div>
+            <span className='secondary-text hover:underline hover:text-[var(--blue)] transition'>{article.user?.username}</span>
+          </div>
+        </Link>
+        {article.badge && <div className='w-max text-[14px] text-[var(--blue)] py-2 px-4 rounded-md' style={{ backgroundColor: 'rgb(from var(--blue) R G B / .2 )'}}>{article.badge}</div>}
+      </div>
       <h2 className='font-bold text-[22px]'>{article.title}</h2>
       <div className='flex items-center justify-between'>
         <span className='secondary-text'>

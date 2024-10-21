@@ -26,7 +26,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="h-[90px] secondary-background border-b border-[var(--border)]">
+    <div className="h-[90px] border-b border-[var(--border)]">
       <div className="h-full flex items-center wrapper w-full justify-between">
         <Link href="/">
           <Image

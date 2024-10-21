@@ -1,21 +1,21 @@
 'use client'
 import Button from "@/src/app/components/ui/button/Button";
 import Link from "next/link";
+import Article from "@/src/app/components/article/Article";
+import Loader from "@/src/app/components/ui/loader/Loader";
+
 import { useUserStore } from "@/src/stores/user.store";
 import { useEffect } from "react";
-import SkeletonLoader from "@/src/app/components/ui/SkeletonLoader";
-import Article from "@/src/app/components/article/Article";
-import type { IArticle } from "@/src/types/articles";
 
-const Loader: React.FC = () => Array.from({ length: 9 }).map((_, index) => <SkeletonLoader height="200px" key={index} count={1} />)
+import type { IArticle } from "@/src/types/articles";
 
 const List: React.FC<{ articles: IArticle[] }> = ({ articles }) => {
   return (
-    <>
+    <div className="grid grid-cols-3 gap-4 mt-6">
       {articles.map((article) => (
         <Article key={article.id} article={article} my={true} />
       ))}
-    </>
+    </div>
   )
 }
 
@@ -34,9 +34,8 @@ export default function Page() {
           <Button type='outline'>Створити статтю</Button>
         </Link>
       </div>
-      <div className="grid grid-cols-3 gap-4 mt-6">
-        {!globalLoader ? <List articles={articles} /> : <Loader />}
-      </div>
+        {!globalLoader ? <List articles={articles} /> : <Loader type='linear' size="100%" color="var(--blue)" />}
+      
     </section>
   )
 }

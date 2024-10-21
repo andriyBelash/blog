@@ -25,7 +25,7 @@ const FormRegister= () => {
     <div className='max-w-[500px] w-full bg-[var(--secondary)] p-7 rounded-lg border border-[var(--border)]'>
       <div className='flex flex-col gap-5'>
         <div className='flex flex-col gap-3'>
-          <h2 className='text-2xl font-bold'>Реєстрація</h2>
+          <h2 className='text-2xl font-bold text-[var(--background)]'>Реєстрація</h2>
           <p className='secondary-text'>Введіть ваші дані для реєстрації</p>
         </div>
 
@@ -62,7 +62,7 @@ const FormRegister= () => {
             {errors.password && <span className='text-[var(--red)] text-[12px]'>{errors.password.message}</span>}
           </div>
           <Button className='w-full mt-5 h-[48px]'>Зареєструватися</Button>
-          <p>
+          <p className='secondary-text'>
             Ви вже маєте акаунт? <Link className='text-[var(--blue)]' href="/auth/login">Вхід</Link>
           </p>
         </form>

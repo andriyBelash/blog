@@ -74,7 +74,7 @@ const SingleSelect: React.FC<SingleSelectProps> = React.memo(({ options, selecte
               <li
                 key={option.key}
                 onClick={() => handleSelect(option.key)}
-                className={`primary-text px-2 py-2 hover:bg-[var(--secondary)] cursor-pointer ${
+                className={`primary-text px-2 py-2 hover:bg-[var(--tertiary)] cursor-pointer ${
                   option.key === selected ? '!bg-[var(--blue)] !text-white' : ''
                 }`}
                 role="option"
