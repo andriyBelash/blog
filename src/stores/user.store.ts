@@ -18,7 +18,7 @@ type Actions = {
   getUser: (withLoading?: boolean ) => Promise<IUser>,
   updateUser: (fields: {username: string, email: string}) => Promise<IUser | undefined>,
   updateLogo: (formData: FormData) => Promise<IUser | undefined>,
-  getArticles: () => Promise<IArticle[]>,
+  getArticles: (query?: Record<string, any>) => Promise<IArticle[]>,
 }
 
 export const useUserStore = create<States & Actions>((set, get) => ({
@@ -28,7 +28,7 @@ export const useUserStore = create<States & Actions>((set, get) => ({
   setIsAuth: (isAuth) => set({ isAuth }),
   globalLoader: true,
   articles: [],
-  params: { page: 1, per_page: 1 },
+  params: { page: 1, per_page: 6 },
   async getUser(withLoading = true) {
     try {
 
@@ -64,11 +64,13 @@ export const useUserStore = create<States & Actions>((set, get) => ({
     } catch (error) {}
   },
 
-  async getArticles() {
+  async getArticles(query) {
     try {
+      const searchParams = {...get().params, ...query}
       set({ globalLoader: true })
-      const res = await UserService.getArticles(get().params)
+      const res = await UserService.getArticles(searchParams)
       set({ articles: res.data.data })
+      set(state => ({ params: { ...state.params, total: res.data.meta.total } }))
       return res.data
     } finally {
       set({ globalLoader: false })

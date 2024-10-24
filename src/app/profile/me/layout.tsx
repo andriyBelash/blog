@@ -1,7 +1,11 @@
 import LinkTabs from "@/src/app/components/ui/tabs/LinkTabs";
-import Transition from "@/src/app/components/ui/Transition";
 
 import { PROFILE_TABS } from "@/src/lib/constants";
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: 'Профіль - огляд',
+}
 
 export default async function ProfileMeLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -8,7 +8,7 @@ export interface IArticle {
   content: string,
   status: ArticleStatus,
   badge: string,
-  logo: string | null,
+  logo: string,
   user_id: number,
   created_at: string,
   updated_at: string,

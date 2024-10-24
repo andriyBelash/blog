@@ -9,6 +9,7 @@ const options: CreateAxiosDefaults = {
     "Content-Type": "application/json",
   },
   withCredentials: true,
+
 }
 
 const axiosClassic = axios.create(options);
@@ -24,11 +25,13 @@ axiosWithAuth.interceptors.request.use((config) => {
 });
 
 axiosWithAuth.interceptors.response.use(
-  (config) => config,
+  (config) => {
+    return config
+  },
   async (error) => {
     const originalRequest = error.config;
     if (
-      error.response?.status === 401 && error.response?._data?.message === 'invalid_token' &&
+      error.response?.status === 401 && error.response?.data?.message === 'invalid_token' &&
       error.config &&
       !error.config._isRetry
     ) {
