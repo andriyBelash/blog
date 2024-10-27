@@ -19,6 +19,7 @@ type Actions = {
   updateUser: (fields: {username: string, email: string}) => Promise<IUser | undefined>,
   updateLogo: (formData: FormData) => Promise<IUser | undefined>,
   getArticles: (query?: Record<string, any>) => Promise<IArticle[]>,
+  setNewParams: (params: Record<string, any>) => void
 }
 
 export const useUserStore = create<States & Actions>((set, get) => ({
@@ -28,7 +29,7 @@ export const useUserStore = create<States & Actions>((set, get) => ({
   setIsAuth: (isAuth) => set({ isAuth }),
   globalLoader: true,
   articles: [],
-  params: { page: 1, per_page: 6 },
+  params: { page: 1, per_page: 6, status: 'all' },
   async getUser(withLoading = true) {
     try {
 
@@ -62,6 +63,10 @@ export const useUserStore = create<States & Actions>((set, get) => ({
       }
       return res.data
     } catch (error) {}
+  },
+
+  setNewParams(params) {
+    set(state => ({ params: { ...state.params, ...params } }))
   },
 
   async getArticles(query) {

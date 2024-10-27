@@ -6,17 +6,18 @@ import Image from 'next/image';
 
 
 interface Props {
-  setImage: (file: File) => void
+  setImage: (file: File) => void,
+  demo?: string
 }
 
-const ImageUploader: React.FC<Props> = ({ setImage }) => {
+const ImageUploader: React.FC<Props> = ({ setImage, demo }) => {
 
-  const [preview, setPreview] = useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(demo || null);
 
   const handleFileSelect = useCallback((file: File) => {
     setPreview(URL.createObjectURL(file));
     setImage(file);
-  }, [setPreview]);
+  }, [setPreview, setImage]);
 
   const imageUploader = useImageUpload({ onFileSelect: handleFileSelect });
 

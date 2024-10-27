@@ -8,6 +8,16 @@ export class ArticlesService {
     })
   }
 
+  public static updateArticle(id: number, data: FormData) {
+    return axiosWithAuth.patch('/articles/' + id, data, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    })
+  }
+
+  public static deleteArticle(id: number) {
+    return axiosWithAuth.delete('/articles/' + id)
+  }
+
  public static getCurrentArticles(slug: string) {
     return axiosWithAuth.get<IArticle>('/articles/' + slug)
   }

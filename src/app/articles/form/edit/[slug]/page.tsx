@@ -1,36 +1,49 @@
 'use client'
-import { useEffect } from "react"
-import FormCard from "../../components/form/FormCard"
-import ImageUploader from "../../components/form/ImageUploader"
+import FormCard from "../../../components/form/FormCard"
+import ImageUploader from "../../../components/form/ImageUploader"
 import SingleSelect from "@/src/app/components/ui/select/SingleSelect"
-import FormEditor from "../../components/form/FormEditor"
-import { ARTICLES_STATUS } from "@/src/lib/constants"
-import { slugify } from "@/src/lib/functions"
-import { useArticlesStore } from "@/src/stores/articles.store"
-import { useShallow } from 'zustand/react/shallow'
-import { Toaster, toast } from 'sonner'
-import { useRouter } from "next/navigation"
+import FormEditor from "../../../components/form/FormEditor"
 import Button from "@/src/app/components/ui/button/Button"
-export default function ArticlesFormCreate() {
 
+import { usePathname } from "next/navigation"
+import { useArticlesStore } from "@/src/stores/articles.store"
+import { ARTICLES_STATUS } from "@/src/lib/constants"
+import { useShallow } from "zustand/react/shallow"
+import { useEffect } from "react"
+import { slugify } from "@/src/lib/functions"
+import { useRouter } from "next/navigation"
+import { Toaster, toast } from 'sonner'
+
+export default function ArticlesFormEdit() {
+
+  const pathname = usePathname()
   const router = useRouter()
 
-  const { form, setFieldInForm } = useArticlesStore(useShallow((state) => ({
+  const { form, article, setFieldInForm, getCurrentArticle } = useArticlesStore(useShallow((state) => ({
     form: state.form,
-    setFieldInForm: state.setFieldInForm
+    article: state.article,
+    setFieldInForm: state.setFieldInForm,
+    getCurrentArticle: state.getCurrentArticle
   })))
 
   useEffect(() => {
     setFieldInForm('slug', slugify(form.title))
-  }, [form.title])
+  }, [form.title, setFieldInForm])
+
+  useEffect(() => {
+    const slug = pathname.split('/').pop() as string
+    getCurrentArticle(slug)
+  }, [pathname, getCurrentArticle])
 
   const checkValidation = (): boolean => {
-    if (!form.logo) {
+    if (!form.logo && !article?.logo) {
       toast.error('Додайте зображення')
       return false
     }
 
-    const fields = Object.values(form)
+    const fields = Object.values(form).filter((field) => field !== null)
+
+    console.log(fields, form)
 
     if (fields.some((field) => !field)) {
       toast.error('Заповніть всі поля')
@@ -40,7 +53,7 @@ export default function ArticlesFormCreate() {
     return true
   }
 
-  const create = async () => {
+  const update = async () => {
     const isValid = checkValidation()
 
     if(isValid) {
@@ -53,14 +66,19 @@ export default function ArticlesFormCreate() {
     }
   }
 
+
+  if(!article) {
+    return null
+  }
+
   return (
     <div className="wrapper">
-      <Toaster richColors />
       <div className="pt-16 pb-8">
+        <Toaster/>
         <div className="grid gap-4 grid-cols-[1.5fr_1fr]">
           <div className="flex flex-col gap-4">
             <FormCard title="Зображення" subtitle="Вставте зображення для вашої статті">
-              <ImageUploader setImage={(file) => setFieldInForm('logo', file)} />
+              <ImageUploader demo={article.logo} setImage={(file) => setFieldInForm('logo', file)} />
             </FormCard>
             <FormCard title="Заголовок" subtitle="Введіть заголовок для вашої статті">
               <input value={form.title} onChange={(e) => setFieldInForm('title', e.target.value)} type="text" placeholder="Введіть заголовок" className="input" />
@@ -86,7 +104,7 @@ export default function ArticlesFormCreate() {
             </FormCard>
           </div>
         </div>
-        <Button onClick={create} className="mt-6">Створити</Button>
+        <Button onClick={update} className="mt-6">Редагувати</Button>
       </div>
     </div>
   )
